@@ -49,7 +49,8 @@
   
 
 <meta property="og:title" content="AdminLTE2 flipping box — flipBox" />
-<meta property="og:description" content="Create a flipping box" />
+<meta property="og:description" content="Create a flipping box
+Create a flipping box based off of the AdminLTE flipBox." />
 <meta property="og:image" content="/logo.svg" />
 
 
@@ -157,41 +158,57 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>AdminLTE2 flipping box</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinydashboardPlus/blob/master/R/boxes.R'><code>R/boxes.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinydashboardPlus/blob/master/R/boxes.R'><code>R/boxes.R</code></a>, <a href='https://github.com/RinteRface/shinydashboardPlus/blob/master/R/flipBox.R'><code>R/flipBox.R</code></a></small>
     <div class="hidden name"><code>flipBox.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>Create a flipping box</p>
+<p>Create a flipping box based off of the AdminLTE flipBox.</p>
     </div>
 
     <pre class="usage"><span class='fu'>flipBox</span><span class='op'>(</span>
-  <span class='va'>...</span>,
-  <span class='va'>back_content</span>,
   <span class='va'>id</span>,
-  front_title <span class='op'>=</span> <span class='cn'>NULL</span>,
-  back_title <span class='op'>=</span> <span class='cn'>NULL</span>,
-  front_btn_text <span class='op'>=</span> <span class='st'>"More"</span>,
-  back_btn_text <span class='op'>=</span> <span class='st'>"Back to main"</span>,
-  header_img <span class='op'>=</span> <span class='cn'>NULL</span>,
-  main_img <span class='op'>=</span> <span class='cn'>NULL</span>,
-  width <span class='op'>=</span> <span class='fl'>6</span>
+  <span class='va'>front_content</span>,
+  <span class='va'>back_content</span>,
+  front_text <span class='op'>=</span> <span class='st'>"More Info"</span>,
+  back_text <span class='op'>=</span> <span class='st'>"Back to Front"</span>
+<span class='op'>)</span>
+
+<span class='fu'>flipBox</span><span class='op'>(</span>
+  <span class='va'>id</span>,
+  <span class='va'>front_content</span>,
+  <span class='va'>back_content</span>,
+  front_text <span class='op'>=</span> <span class='st'>"More Info"</span>,
+  back_text <span class='op'>=</span> <span class='st'>"Back to Front"</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>...</th>
-      <td><p>front body content.</p></td>
+      <th>id</th>
+      <td><p>the <code>flipBox</code> id</p></td>
+    </tr>
+    <tr>
+      <th>front_content</th>
+      <td><p>ui for the front of the flip box</p></td>
     </tr>
     <tr>
       <th>back_content</th>
-      <td><p>back body content.</p></td>
+      <td><p>ui for the back of the flip box</p></td>
     </tr>
     <tr>
-      <th>id</th>
-      <td><p>Box id. Must be unique!</p></td>
+      <th>front_text</th>
+      <td><p>text for front button</p></td>
+    </tr>
+    <tr>
+      <th>back_text</th>
+      <td><p>text for back button</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>front body content.</p></td>
     </tr>
     <tr>
       <th>front_title</th>
@@ -223,6 +240,21 @@
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>HTML tagList</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>To access the state of the flipbox use the input alias <code>input$&lt;id&gt;_value</code>.
+  For example, if your flipBox's id is myawesomeflipbox, you can access its state via
+  <code>input$myawesomeflipbox_value</code> where a 0 corresponds to the front, 1 the back, and NULL 
+  indicates the input has not been set yet (i.e. the card has not flipped yet).</p>
+    <h2 class="hasAnchor" id="warning"><a class="anchor" href="#warning"></a>Warning</h2>
+
+    <p>this function is experimental.</p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p><a href='https://rinterface.github.io/shinydashboardPlus/reference/flipBox.html'>https://rinterface.github.io/shinydashboardPlus/reference/flipBox.html</a></p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>David Granjon, <a href='mailto:dgranjon@ymail.com'>dgranjon@ymail.com</a></p>
@@ -410,6 +442,45 @@
   <span class='op'>)</span>
 <span class='op'>}</span>
 
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://rstudio.github.io/shinydashboard/'>shinydashboard</a></span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: ‘shinydashboard’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:shinydashboardPlus’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    box, dashboardHeader, dashboardPage, dashboardSidebar, messageItem,</span>
+#&gt; <span class='message'>    notificationItem, taskItem</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:graphics’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    box</span></div><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinydashboardPlus'>shinydashboardPlus</a></span><span class='op'>)</span>
+<span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+  ui <span class='op'>=</span> <span class='fu'><a href='dashboardPage.html'>dashboardPage</a></span><span class='op'>(</span>
+    <span class='fu'><a href='dashboardHeader.html'>dashboardHeader</a></span><span class='op'>(</span><span class='op'>)</span>,
+    <span class='fu'><a href='dashboardSidebar.html'>dashboardSidebar</a></span><span class='op'>(</span><span class='op'>)</span>,
+    <span class='fu'><a href='https://rdrr.io/pkg/shinydashboard/man/dashboardBody.html'>dashboardBody</a></span><span class='op'>(</span>
+      <span class='fu'>flip_box</span><span class='op'>(</span>
+        id <span class='op'>=</span> <span class='st'>"id"</span>,
+        front_content <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>div</a></span><span class='op'>(</span>
+          class <span class='op'>=</span> <span class='st'>"text-center"</span>,
+          <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>img</a></span><span class='op'>(</span>
+            src <span class='op'>=</span> <span class='st'>"https://image.flaticon.com/icons/svg/149/149076.svg"</span>,
+            height <span class='op'>=</span> <span class='st'>"300px"</span>,
+            width <span class='op'>=</span> <span class='st'>"100%"</span>
+          <span class='op'>)</span>
+        <span class='op'>)</span>,
+        back_content <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>div</a></span><span class='op'>(</span>
+          class <span class='op'>=</span> <span class='st'>"text-center"</span>,
+          height <span class='op'>=</span> <span class='st'>"300px"</span>,
+          width <span class='op'>=</span> <span class='st'>"100%"</span>,
+          <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>h1</a></span><span class='op'>(</span><span class='st'>"Details...."</span><span class='op'>)</span>,
+          <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>p</a></span><span class='op'>(</span><span class='st'>"More information...."</span><span class='op'>)</span>
+        <span class='op'>)</span>
+      <span class='op'>)</span>
+    <span class='op'>)</span>
+  <span class='op'>)</span>,
+  
+  server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='op'>}</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in flip_box(id = "id", front_content = div(class = "text-center",     img(src = "https://image.flaticon.com/icons/svg/149/149076.svg",         height = "300px", width = "100%")), back_content = div(class = "text-center",     height = "300px", width = "100%", h1("Details...."), p("More information...."))): could not find function "flip_box"</span></div><div class='input'>   
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
